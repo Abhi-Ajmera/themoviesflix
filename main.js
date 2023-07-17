@@ -1,6 +1,10 @@
+const apiKey = "b8f19e26f675d75b4146145b2ca97bb1";
+
 const apiEndpoint = "https://api.themoviedb.org/3";
 const apiPaths = {
-  fetchAllCategories: `${apiEndpoint}/genre/movie/list`,
+  fetchAllCategories: `${apiEndpoint}/genre/movie/list?api_key=${apiKey}`,
+  fetchMovieList: (id) =>
+    `${apiEndpoint}/discover/movie?api_key=${apiKey}&with_genres=${id}`,
 };
 
 function onLoadComplete() {
@@ -8,32 +12,31 @@ function onLoadComplete() {
 }
 
 function fetchAndBuildAllSections() {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOGYxOWUyNmY2NzVkNzViNDE0NjE0NWIyY2E5N2JiMSIsInN1YiI6IjY0YWZlODVkZTI0YjkzNWIzMzhkYTZmNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Ml1Z_fp3Pnf9xIm58s8UTJPrjFEJgj_JIsV_YuJGYJ0",
-    },
-  };
-
-  fetch(apiPaths.fetchAllCategories, options)
+  fetch(apiPaths.fetchAllCategories)
     .then((response) => response.json())
-
     .then((response) => {
       const category = response.genres;
       if (Array.isArray(category) && category.length) {
         category.forEach((category) => {
-          fetchAndBuildCategorySections(category);
+          fetchAndBuildCategorySections(
+            apiPaths.fetchMovieList(category.id),
+            category
+          );
         });
       }
-      console.table("fetchAndBuildAllSections", category);
+      // console.table(category);
     })
     .catch((err) => console.error(err));
 }
 
-function fetchAndBuildCategorySections(category) {
-  console.log("fetchAndBuildCategorySections", category);
+function fetchAndBuildCategorySections(fetchUrl, category) {
+  console.log(fetchUrl, category);
+  fetch(fetchUrl)
+    .then((response) => response.json())
+    .then((response) => {
+      console.table(response);
+    })
+    .catch((err) => console.error(err));
 }
 
 window.addEventListener("load", function () {
