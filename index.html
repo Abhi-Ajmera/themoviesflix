@@ -8,43 +8,83 @@
     <title>themoviesflix</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <script defer src="main.js"></script>
 </head>
 
 <body>
-    <!-- header -->
-    <header>
-        <div class="header-container container">
-            <div class="left-container ">
-                <img class="logo" src="assets/Images/Logo.png" alt="themoviesflix Logo">
-                <ul class="main-nav">
-                    <li class="nav-item active">Home</li>
-                    <li class="nav-item">Tv Shows</li>
-                    <li class="nav-item">Movies</li>
-                    <li class="nav-item">New & Popular</li>
-                    <li class="nav-item">My List</li>
-                    <li class="nav-item">Browse by Language</li>
-                </ul>
-            </div>
-            <div class="right-container">
-                <i class="bi bi-search"></i>
-                <i class="bi bi-bell-fill"></i>
-                <i class="bi bi-person-fill"></i>
-            </div>
-
-
+    <!-- navbar -->
+    <nav>
+        <img class="logo" src="assets/Images/Logo.png" alt="themoviesflix Logo">
+        <ul class="main-nav">
+            <li class="nav-item active">Home</li>
+            <li class="nav-item">Movies</li>
+            <li class="nav-item">Tv Shows</li>
+            <li class="nav-item"><i class="bi bi-person-fill"></i></span></li>
+        </ul>
+    </nav>
+    <!-- banner -->
+    <header id="banner">
+        <div class="banner-content">
+            <h1 id="banner-title"></h1>
+            <button class="banner-button">Play</button>
+            <button class="banner-button">My List</button>
+            <p id="banner-description"></p>
         </div>
+        <div class="banner-fade"></div>
     </header>
 
-    <!-- movie section -->
-    <div class="movies-container container" id="movies-container">
-        <div class="movie-section">
-            <h2 class="movie-section-heading">Trending <span class="explore-nudge">Explore All</span></h2>
-            <div class="movies-row">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
+    <!-- movie rows -->
+    <div class="row" id="row0">
+        <h2>Trending</h2>
+        <!-- <i class="bi bi-arrow-left-short" id="btnLeft"></i>
+        <i class="bi bi-arrow-right-short" id="btnRight"></i> -->
+        <div class="image-container" id="image0"></div>
+    </div>
+    <div class="row" id="row1">
+        <h2>Top Rated</h2>
+        <div class="image-container" id="image1"></div>
+    </div>
+    <div class="row" id="row2">
+        <h2>Action Movies</h2>
+        <div class="image-container" id="image2"></div>
+    </div>
+    <div class="row" id="row3">
+        <h2>Comedy Movies</h2>
+        <div class="image-container" id="image3"></div>
+    </div>
+    <div class="row" id="row4">
+        <h2>Horror Movies</h2>
+        <div class="image-container" id="image4"></div>
+    </div>
+    <div class="row" id="row5">
+        <h2>Romance Movies</h2>
+        <div class="image-container" id="image5"></div>
+    </div>
+    <div class="row" id="row6">
+        <h2>TV Shows</h2>
+        <div class="image-container" id="image6"></div>
+    </div>
+    <div class="row" id="row7">
+        <h2>Documentries</h2>
+        <div class="image-container" id="image7">
+        </div>
+    </div>
+
+    <!-- onclick pop up -->
+    <div id="container" class="container">
+        <div class="moviePoster">
+            <img id="moviePosterImg" src="" alt="">
+        </div>
+        <div class="details">
+            <h2 class="title"></h2>
+            <div class="small-details">
+                <p class="date"></p>
+                <p class="language"></p>
+                <p class="rating"></p>
             </div>
+            <h1 id="description"></h1>
+            <button id="play"></button>
         </div>
     </div>
 </body>
