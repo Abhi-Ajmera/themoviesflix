@@ -2,6 +2,14 @@ const API_KEY = "b8f19e26f675d75b4146145b2ca97bb1";
 const baseURL = "https://api.themoviedb.org/3";
 const imageUrl = "https://image.tmdb.org/t/p/original/";
 
+const nav = document.getElementsByTagName("nav")[0];
+const title = document.getElementById("title");
+const language = document.getElementById("language");
+const rating = document.getElementById("rating");
+const description = document.getElementById("description");
+const close = document.getElementById("close");
+const container = document.getElementById("container");
+
 const requests = [
   `/trending/all/week?api_key=${API_KEY}&language=en-US`,
   `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
@@ -12,6 +20,14 @@ const requests = [
   `/discover/tv?api_key=${API_KEY}&include_adult=false&include_null_first_air_dates=false&language=en&page=1&sort_by=popularity.desc&with_origin_country=US`,
   `/discover/movie?api_key=${API_KEY}&with_genres=99`,
 ];
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    nav.style.backgroundColor = "#111";
+  } else {
+    nav.style.backgroundColor = "transparent";
+  }
+});
 
 const bannerEle = document.getElementById("banner");
 const bannerTitle = document.getElementById("banner-title");
@@ -54,22 +70,24 @@ function createRows(movies, i) {
     rowImage.appendChild(poster);
 
     // pop up section
-    // poster.addEventListener("click", (e) => {
-    //   e.preventDefault();
-    //   const moviePosterImg = document.getElementById("moviePosterImg");
-    //   moviePosterImg.src = `${imageUrl}${movies.poster_path}`;
-    //   console.log(movies);
-    // });
+    poster.addEventListener("click", (e) => {
+      e.preventDefault();
+      container.style.display = "flex";
+      const moviePosterImg = document.getElementById("moviePosterImg");
+      moviePosterImg.src = `${imageUrl}${movies.poster_path}`;
+      // console.log(movies);
+      title.textContent = movies.original_title || movies.title;
+      language.textContent = movies.original_language;
+      rating.textContent = movies.vote_average;
+      description.textContent = movies.overview;
+    });
   });
 }
 
-
-
-
-
-
-
-
+close.addEventListener("click", (e) => {
+  e.preventDefault();
+  container.style.display = "none";
+});
 
 // const btnLeft = document.getElementById("btnLeft");
 // const btnRight = document.getElementById("btnRight");
