@@ -17,17 +17,14 @@
     <nav>
         <img class="logo" src="assets/Images/Logo.png" alt="themoviesflix Logo">
         <ul class="main-nav">
-            <li class="nav-item active">Home</li>
-            <li class="nav-item">Movies</li>
-            <li class="nav-item">Tv Shows</li>
-            <li class="nav-item"><i class="bi bi-person-fill"></i></span></li>
+            <li class="nav-item"><i class="bi bi-person-fill"></i></li>
         </ul>
     </nav>
     <!-- banner -->
     <header id="banner">
         <div class="banner-content">
             <h1 id="banner-title"></h1>
-            <button class="banner-button">Play</button>
+            <button class="banner-button play">Play</button>
             <button class="banner-button">My List</button>
             <p id="banner-description"></p>
         </div>
@@ -45,6 +42,7 @@
         <h2>Top Rated</h2>
         <div class="image-container" id="image1"></div>
     </div>
+    <h2 id="mvId">Movies</h2>
     <div class="row" id="row2">
         <h2>Action Movies</h2>
         <div class="image-container" id="image2"></div>
@@ -73,20 +71,27 @@
 
     <!-- onclick pop up -->
     <div id="container" class="container">
-        <div id="moviePoster">
-            <img id="moviePosterImg" src="" alt="">
-        </div>
-        <div class="details">
-            <h2 id="title"></h2>
-            <div class="small-details">
-                <p id="language"></p>
-                <p id="rating"></p>
+        <div id="imageLoad">
+            <div id="moviePoster">
+                <img id="moviePosterImg" src="" alt="">
             </div>
-            <h3 id="description"></h3>
-            <button id="play">Play</button>
+            <div class="details">
+                <h3 id="title"></h3>
+                <div class="small-details">
+                    <p id="language"></p>
+                    <p><i class="bi bi-star-fill"></i>&nbsp;&nbsp;<span id="rating"></span></p>
+                </div>
+                <h3 id="description"></h3>
+                <button class="play" id="play">Play</button>
+            </div>
+            <button class="close">x</button>
         </div>
-        <button id="close">x</button>
+        <div id="VideoLoad">
+            <iframe id="iFrame" src=""></iframe>
+            <button class="close">x</button>
+        </div>
     </div>
+
 </body>
 
 </html>

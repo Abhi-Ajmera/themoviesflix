@@ -32,24 +32,19 @@ nav > .logo {
 
 .main-nav {
   list-style: none;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
+  margin-right: 40px;
 }
 
-.main-nav li {
-  margin-right: 20px;
-  color: #e5e5e5;
-  opacity: 0.75;
-}
-
-.main-nav li.active {
-  color: white;
-  opacity: 1;
-}
-
-.main-nav > li > .bi {
+.main-nav li .bi {
   cursor: pointer;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 4px;
+}
+
+.main-nav li .bi:hover {
+  color: black;
+  background-color: white;
 }
 
 #banner {
@@ -59,15 +54,16 @@ nav > .logo {
 
 .banner-content {
   margin-left: 30px;
-  padding-top: 110px;
+  padding-top: 160px;
   height: 190px;
 }
 
 #banner-title {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 800;
   font-family: monospace;
   padding-bottom: 0.3rem;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.6);
 }
 
 #banner-description {
@@ -82,7 +78,7 @@ nav > .logo {
 
 .banner-button,
 #play,
-#close {
+.close {
   cursor: pointer;
   color: white;
   outline: none;
@@ -95,7 +91,7 @@ nav > .logo {
 
 .banner-button:hover,
 #play:hover,
-#close:hover {
+.close:hover {
   color: #000;
   background-color: white;
   transition: all 0.2s;
@@ -189,15 +185,76 @@ nav > .logo {
   margin-top: 20px;
 }
 
-#close {
+.close {
   position: relative;
   height: fit-content;
   top: 10px;
   right: 10px;
   border: none;
   border-radius: 150px;
-  font-size: 20px;
-  padding: 0px 12px 5px 12px;
+  font-size: 16px;
+  padding: 0px 9px;
+  padding-bottom: 4px;
   font-weight: 600;
   text-align: center;
+}
+
+#moviePosterImg {
+  display: block;
+}
+
+#VideoLoad {
+  display: none;
+  
+}
+
+#iFrame {
+  border: none;
+  width: 100%;
+  min-height: 360px;
+}
+
+@media screen and (max-width: 1100px) {
+  .banner-content {
+    padding-top: 110px;
+  }
+
+  #banner {
+    height: 380px;
+  }
+
+  .banner-fade {
+    height: 12.25rem;
+  }
+
+  #banner-title {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .image {
+    max-height: 180px;
+  }
+
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    max-height: fit-content;
+  }
+
+  .container #title {
+    font-size: 1.6rem;
+    padding-bottom: 10px;
+  }
+
+  #moviePoster img {
+    max-width: 100%;
+    max-height: 500px;
+  }
+
+  .close {
+    position: absolute;
+    top: 2px;
+    right: -12px;
+  }
 }

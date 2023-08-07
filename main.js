@@ -7,7 +7,7 @@ const title = document.getElementById("title");
 const language = document.getElementById("language");
 const rating = document.getElementById("rating");
 const description = document.getElementById("description");
-const close = document.getElementById("close");
+const close = document.querySelectorAll(".close");
 const container = document.getElementById("container");
 
 const requests = [
@@ -40,10 +40,10 @@ async function fetchBanner() {
   // console.log(banners);
   const randomBanner = banners[Math.floor(Math.random() * banners.length)];
   // console.log(randomBanner);
-
   bannerEle.style.backgroundImage = `url(${imageUrl}${randomBanner.backdrop_path})`;
-  bannerTitle.textContent = randomBanner.name;
-  bannerDescription.textContent = randomBanner.overview;
+  bannerTitle.textContent =
+    randomBanner.name || randomBanner.title || randomBanner.original_title;
+  bannerDescription.textContent = `${randomBanner.overview.slice(0, 140)} ...`;
 }
 
 fetchBanner();
@@ -66,6 +66,7 @@ function createRows(movies, i) {
     const poster = document.createElement("img");
 
     poster.src = `${imageUrl}${movies.poster_path}`;
+    poster.setAttribute("loading", "lazy");
     poster.classList.add("image");
     rowImage.appendChild(poster);
 
@@ -74,7 +75,13 @@ function createRows(movies, i) {
       e.preventDefault();
       container.style.display = "flex";
       const moviePosterImg = document.getElementById("moviePosterImg");
-      moviePosterImg.src = `${imageUrl}${movies.poster_path}`;
+
+      if (window.innerWidth > 1100) {
+        moviePosterImg.src = `${imageUrl}${movies.poster_path}`;
+      } else {
+        moviePosterImg.src = `${imageUrl}${movies.backdrop_path}`;
+      }
+
       // console.log(movies);
       title.textContent = movies.original_title || movies.title;
       language.textContent = movies.original_language;
@@ -84,10 +91,52 @@ function createRows(movies, i) {
   });
 }
 
-close.addEventListener("click", (e) => {
-  e.preventDefault();
-  container.style.display = "none";
+// close Pop window
+close.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    container.style.display = "none";
+    imageLoad.style.display = "block";
+    VideoLoad.style.display = "none";
+    iFrame.src = "";
+  });
 });
+
+// To Play Trailer
+const popPlay = document.querySelectorAll(".play");
+popPlay.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    let popDetails = e.target.parentElement;
+    let popTitle =
+      popDetails.querySelector("#title") ||
+      popDetails.querySelector("#banner-title");
+    // console.log(popTitle);
+    trailerFromYoutube(popTitle.innerText);
+  });
+});
+
+let iFrame = document.getElementById("iFrame");
+let imageLoad = document.getElementById("imageLoad");
+let VideoLoad = document.getElementById("VideoLoad");
+function trailerFromYoutube(title) {
+  console.log(title);
+  const myYoutubeAPI = `AIzaSyDkI5J__tL8CyOMqWoaKV4ssXd_rd56kRU`;
+  const YoutubeAPICall = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${
+    title + "trailer"
+  }&key=${myYoutubeAPI}`;
+  fetch(YoutubeAPICall)
+    .then((res) => (data = res.json()))
+    .then((res) => {
+      const videoId = res.items[0].id.videoId;
+      const YoutubeUrl = `https://www.youtube.com/embed/${videoId}`;
+      console.log(YoutubeUrl);
+      container.style.display = "block";
+      imageLoad.style.display = "none";
+      VideoLoad.style.display = "block";
+      iFrame.src = YoutubeUrl;
+    });
+}
 
 // const btnLeft = document.getElementById("btnLeft");
 // const btnRight = document.getElementById("btnRight");
