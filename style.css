@@ -140,32 +140,30 @@ nav > .logo {
 }
 
 .container {
-  width: 70%;
+  width: 66%;
   display: none;
-  max-height: 500px;
+  max-height: 600px;
   margin: 20px auto;
   background-color: black;
   position: fixed;
   left: 50%;
-  top: 50%;
+  top: 40%;
   transform: translate(-50%, -50%);
 }
 
 #imageLoad {
   display: flex;
-  flex-direction: column;
   justify-content: space-around;
 }
 
 #VideoLoad {
   display: none;
-  min-height: 360px;
+  min-height: 420px;
 }
 
 #iFrame {
   border: none;
   width: 100%;
-  min-height: 00px;
 }
 
 #moviePoster img {
@@ -237,7 +235,7 @@ nav > .logo {
     max-height: 180px;
   }
 
-  .container {
+  #imageLoad {
     flex-direction: column;
     justify-content: center;
     max-height: fit-content;
@@ -253,9 +251,21 @@ nav > .logo {
     max-height: 500px;
   }
 
+  .container {
+    top: 45%;
+    transform: translate(-50%, -40%);
+  }
+
   .close {
     position: absolute;
     top: 2px;
     right: -12px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    top: 33%;
+    transform: translate(-50%, -35%);
   }
 }
