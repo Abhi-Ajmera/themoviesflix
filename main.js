@@ -73,7 +73,9 @@ function createRows(movies, i) {
     // pop up section
     poster.addEventListener("click", (e) => {
       e.preventDefault();
-      container.style.display = "flex";
+      container.style.display = "block";
+      imageLoad.style.display = "flex";
+      VideoLoad.style.display = "none";
       const moviePosterImg = document.getElementById("moviePosterImg");
 
       if (window.innerWidth > 1100) {
@@ -96,7 +98,7 @@ close.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     container.style.display = "none";
-    imageLoad.style.display = "block";
+    imageLoad.style.display = "none";
     VideoLoad.style.display = "none";
     iFrame.src = "";
   });
@@ -133,7 +135,7 @@ function trailerFromYoutube(title) {
       console.log(YoutubeUrl);
       container.style.display = "block";
       imageLoad.style.display = "none";
-      VideoLoad.style.display = "block";
+      VideoLoad.style.display = "flex";
       iFrame.src = YoutubeUrl;
     });
 }
