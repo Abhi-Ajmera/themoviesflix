@@ -1,4 +1,7 @@
-const API_KEY = "b8f19e26f675d75b4146145b2ca97bb1";
+import { TMDB_API_KEY, YT_API_Key } from "./apiKeys";
+
+const TMDB_API_KEY = TMDB_API_KEY;
+const YT_API_Key = YT_API_Key;
 const baseURL = "https://api.themoviedb.org/3";
 const imageUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -11,14 +14,14 @@ const close = document.querySelectorAll(".close");
 const container = document.getElementById("container");
 
 const requests = [
-  `/trending/all/week?api_key=${API_KEY}&language=en-US`,
-  `/movie/top_rated?api_key=${API_KEY}&language=en-US`,
-  `/discover/movie?api_key=${API_KEY}&with_genres=28`,
-  `/discover/movie?api_key=${API_KEY}&with_genres=35`,
-  `/discover/movie?api_key=${API_KEY}&with_genres=27`,
-  `/discover/movie?api_key=${API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=romance`,
-  `/discover/tv?api_key=${API_KEY}&include_adult=false&include_null_first_air_dates=false&language=en&page=1&sort_by=popularity.desc&with_origin_country=US`,
-  `/discover/movie?api_key=${API_KEY}&with_genres=99`,
+  `/trending/all/week?api_key=${TMDB_API_KEY}&language=en-US`,
+  `/movie/top_rated?api_key=${TMDB_API_KEY}&language=en-US`,
+  `/discover/movie?api_key=${TMDB_API_KEY}&with_genres=28`,
+  `/discover/movie?api_key=${TMDB_API_KEY}&with_genres=35`,
+  `/discover/movie?api_key=${TMDB_API_KEY}&with_genres=27`,
+  `/discover/movie?api_key=${TMDB_API_KEY}&include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=romance`,
+  `/discover/tv?api_key=${TMDB_API_KEY}&include_adult=false&include_null_first_air_dates=false&language=en&page=1&sort_by=popularity.desc&with_origin_country=US`,
+  `/discover/movie?api_key=${TMDB_API_KEY}&with_genres=99`,
 ];
 
 window.addEventListener("scroll", () => {
@@ -123,10 +126,10 @@ let imageLoad = document.getElementById("imageLoad");
 let VideoLoad = document.getElementById("VideoLoad");
 function trailerFromYoutube(title) {
   console.log(title);
-  const myYoutubeAPI = `AIzaSyDkI5J__tL8CyOMqWoaKV4ssXd_rd56kRU`;
+
   const YoutubeAPICall = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${
     title + "trailer"
-  }&key=${myYoutubeAPI}`;
+  }&key=${YT_API_Key}`;
   fetch(YoutubeAPICall)
     .then((res) => (data = res.json()))
     .then((res) => {
