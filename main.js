@@ -1,7 +1,5 @@
 import { TMDB_API_KEY, YT_API_Key } from "./apiKeys.js";
 
-const TMDB_API_KEY = TMDB_API_KEY;
-const YT_API_Key = YT_API_Key;
 const baseURL = "https://api.themoviedb.org/3";
 const imageUrl = "https://image.tmdb.org/t/p/original/";
 
