@@ -122,23 +122,22 @@ popPlay.forEach((btn) => {
 let iFrame = document.getElementById("iFrame");
 let imageLoad = document.getElementById("imageLoad");
 let VideoLoad = document.getElementById("VideoLoad");
-function trailerFromYoutube(title) {
-  console.log(title);
+async function trailerFromYoutube(title) {
+  // console.log(title);
 
   const YoutubeAPICall = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${
     title + "trailer"
   }&key=${YT_API_Key}`;
-  fetch(YoutubeAPICall)
-    .then((res) => (data = res.json()))
-    .then((res) => {
-      const videoId = res.items[0].id.videoId;
-      const YoutubeUrl = `https://www.youtube.com/embed/${videoId}`;
-      console.log(YoutubeUrl);
-      container.style.display = "block";
-      imageLoad.style.display = "none";
-      VideoLoad.style.display = "flex";
-      iFrame.src = YoutubeUrl;
-    });
+  const res = await fetch(YoutubeAPICall);
+  const data = await res.json();
+
+  const videoId = data.items[0].id.videoId;
+  const YoutubeUrl = `https://www.youtube.com/embed/${videoId}`;
+  // console.log(YoutubeUrl);
+  container.style.display = "block";
+  imageLoad.style.display = "none";
+  VideoLoad.style.display = "flex";
+  iFrame.src = YoutubeUrl;
 }
 
 // const btnLeft = document.getElementById("btnLeft");
